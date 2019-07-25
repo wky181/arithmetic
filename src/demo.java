@@ -14,12 +14,16 @@ public class demo {
         int tmp = a[p]; a[p] = a[r]; a[r] = tmp;
         int i = l, j = r;
         while(i < j) {
-            while(i < j && a[i] < x) i++;
+            while(i < j && a[i] < x) {
+                i++;
+            }
             if(i < j) {
                 a[j] = a[i];
                 j--;
             }
-            while(i < j && a[j] > x) j--;
+            while(i < j && a[j] > x) {
+                j--;
+            }
             if(i < j) {
                 a[i] = a[j];
                 i++;
@@ -27,9 +31,15 @@ public class demo {
         }
         a[i] = x;
         p = i;
-        if(i - l + 1 == k) return a[i];
-        if(i - l + 1 < k) return quickSelect(a,i+1,r, k-(i-l+1)); //填空
-        else return quickSelect(a, l, i - 1, k);
+        if(i - l + 1 == k) {
+            return a[i];
+        }
+        if(i - l + 1 < k) {
+            //填空
+            return quickSelect(a,i+1,r, k-(i-l+1));
+        } else {
+            return quickSelect(a, l, i - 1, k);
+        }
     }
     public static void main(String args[]) {
         int [] a = {1,2,4,4,5,7};
