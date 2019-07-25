@@ -1,0 +1,16 @@
+package 数据结构.lanqiao;
+
+/**
+ * @author 武凯焱
+ * @date 2019/7/23 21:41
+ * @Description:
+ */
+public class ListNode {
+    Object data;
+    ListNode next;
+    ListNode per;
+
+    public ListNode(Object data) {
+        this.data = data;
+    }
+}
