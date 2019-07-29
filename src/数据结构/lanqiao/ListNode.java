@@ -5,12 +5,12 @@ package 数据结构.lanqiao;
  * @date 2019/7/23 21:41
  * @Description:
  */
-public class ListNode {
-    Object data;
+public class ListNode<T> {
+    T data;
     ListNode next;
     ListNode per;
 
-    public ListNode(Object data) {
+    public ListNode(T data) {
         this.data = data;
     }
 }

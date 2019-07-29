@@ -7,14 +7,11 @@ package 数据结构.lanqiao;
  */
 public class MyArrayListTest {
     public static void main(String[] args) {
-        MyArrayList list = new MyArrayList();
+        MyArrayList<String> list = new MyArrayList<String>();
         for (int i = 0; i < 20; i++) {
             list.add("cxk" + i);
         }
-        System.out.println(list.toString());
-        System.out.println(list.indexOf("cxk10"));
-        list.delete(20);
-        System.out.println(list.toString());
-
+        String string = list.at(5);
+        System.out.println(string);
     }
 }

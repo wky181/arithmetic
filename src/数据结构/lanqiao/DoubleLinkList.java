@@ -17,6 +17,7 @@ public class DoubleLinkList implements MyList {
         last = new ListNode(null);
         first.next = last;
         last.per = first;
+        now  = first;
     }
 
     @Override
@@ -142,5 +143,16 @@ public class DoubleLinkList implements MyList {
             i++;
         }
         return null;
+    }
+
+  private  ListNode now ;
+    @Override
+    public boolean hasNext() {
+        return now.next!=last;
+    }
+    @Override
+    public Object next() {
+        now = now.next;
+        return now.data;
     }
 }

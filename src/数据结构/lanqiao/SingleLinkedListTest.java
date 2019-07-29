@@ -10,7 +10,7 @@ import org.junit.Test;
 public class SingleLinkedListTest {
     @Test
     public void add() {
-        SingleLinkedList singleLinkedList = new SingleLinkedList();
+        SingleLinkedList<String> singleLinkedList = new SingleLinkedList<String>();
         for (int i = 0; i < 10; i++) {
             singleLinkedList.add("cxk" + i);
         }
@@ -19,12 +19,12 @@ public class SingleLinkedListTest {
 
     @Test
     public void delete() {
-        SingleLinkedList singleLinkedList = new SingleLinkedList();
+        SingleLinkedList<String> singleLinkedList = new SingleLinkedList<String>();
         for (int i = 0; i < 10; i++) {
             singleLinkedList.add("cxk" + i);
         }
-        singleLinkedList.delete(0);
-        singleLinkedList.delete(2);
+        singleLinkedList.delete("cxk2");
+
 
         System.out.println(singleLinkedList);
     }
@@ -32,7 +32,7 @@ public class SingleLinkedListTest {
 
     @Test
     public void update() {
-        SingleLinkedList singleLinkedList = new SingleLinkedList();
+        SingleLinkedList<String> singleLinkedList = new SingleLinkedList<String>();
         for (int i = 0; i < 10; i++) {
             singleLinkedList.add("cxk" + i);
         }
@@ -43,7 +43,7 @@ public class SingleLinkedListTest {
 
     @Test
     public void contains() {
-        SingleLinkedList singleLinkedList = new SingleLinkedList();
+        SingleLinkedList<String> singleLinkedList = new SingleLinkedList<String>();
         for (int i = 0; i < 10; i++) {
             singleLinkedList.add("cxk" + i);
         }

@@ -63,10 +63,14 @@ public class DoubleLinkListTest {
     }
     @Test
     public void at(){
-        SingleLinkedList singleLinkedList = new SingleLinkedList();
-        for (int i = 0; i < 10; i++) {
-            singleLinkedList.add("cxk" + i);
+        //测试迭代器
+        DoubleLinkList doubleLinkList  = new DoubleLinkList();
+        for (int i = 0; i < 10 ; i++) {
+            doubleLinkList.add("cxk"+i);
         }
-        System.out.println(singleLinkedList.at(5));
+        while (doubleLinkList.hasNext()){
+            System.out.println(doubleLinkList.next());
+        }
+
     }
 }

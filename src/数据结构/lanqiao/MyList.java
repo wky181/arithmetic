@@ -1,19 +1,21 @@
 package 数据结构.lanqiao;
 
+import java.util.Iterator;
+
 /**
  * @author 武凯焱
  * @date 2019/7/23 16:24
  * @Description:
  */
-public interface MyList {
-    void add(Object element);
+public interface MyList<T> extends Iterator {
+    void add(T element);
 
     /**
      * 删除一个相同元素
      *
      * @param element
      */
-    void delete(Object element);
+    void delete(T element);
 
     /**
      * 删除指定位置元素
@@ -28,7 +30,7 @@ public interface MyList {
      * @param index
      * @param newElement
      */
-    void update(int index, Object newElement);
+    void update(int index, T newElement);
 
     /**
      * 是否包含元素
@@ -36,19 +38,19 @@ public interface MyList {
      * @param target
      * @return
      */
-    boolean contains(Object target);
+    boolean contains(T target);
 
     /**
      * 查询指定位置元素下标
      */
-    int indexOf(Object str);
+    int indexOf(T str);
 
     /**
      * 查询指定位置得元素
      * @param index
      * @return
      */
-    Object at (int index);
+    T at (int index);
 
 
 }

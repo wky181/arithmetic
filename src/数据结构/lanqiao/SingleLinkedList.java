@@ -5,18 +5,26 @@ package 数据结构.lanqiao;
  * @date 2019/7/23 21:55
  * @Description:
  */
-public class SingleLinkedList implements MyList {
-    private ListNode first;
-    private ListNode last;
+public class SingleLinkedList<T> implements MyList<T> {
+    /**
+     * 永远指向第一个节点
+     */
+    private ListNode<T> first;
+    /**
+     *last 永远指向最后一个节点
+     */
+    private ListNode<T> last;
     private int size;
 
     @Override
-    public void add(Object element) {
-        if (first == null) {
-            first = new ListNode(element);
+    public void add(T element) {
+        if (first==null){
+            first =new  ListNode<T>(element);
             last = first;
-        } else {
-            last.next = new ListNode(element);
+        }else {
+            //把当前最后一个节点的next指向新增节点
+            last.next = new ListNode<T>(element);
+            //使lats指向新增节点
             last = last.next;
         }
         size++;
@@ -39,15 +47,15 @@ public class SingleLinkedList implements MyList {
     }
 
     @Override
-    public void delete(Object element) {
+    public void delete(T element) {
+
         ListNode p = first;
         ListNode pre = null;
-        while (p != null) {
-            if (p.data.equals(element)) {
-                if (pre == null) {
-                    // 当正好第一个元素被匹配到的时候，让它和自己的下指针相等
+        while (p!=null){
+            if (p.data.equals(element)){
+                if (pre==null){
                     first = first.next;
-                } else {
+                }else {
                     pre.next = p.next;
                 }
                 size--;
@@ -69,7 +77,7 @@ public class SingleLinkedList implements MyList {
         while (p != null) {
             if (i == index) {
                 if (per == null) {
-                // 当正好第一个元素被匹配到的时候，让它和自己的下指针相等
+                    // 当正好第一个元素被匹配到的时候，让它和自己的下指针相等
                     first = first.next;
                 } else {
                     per.next = p.next;
@@ -83,7 +91,7 @@ public class SingleLinkedList implements MyList {
     }
 
     @Override
-    public void update(int index, Object newElement) {
+    public void update(int index, T newElement) {
         if (index < 0 || index >= size) {
             return;
         }
@@ -100,24 +108,25 @@ public class SingleLinkedList implements MyList {
     }
 
     @Override
-    public boolean contains(Object target) {
+    public boolean contains(T target) {
         ListNode p = first;
         while (p != null) {
             if (target.equals(p.data)) {
                 return true;
             }
             p = p.next;
-    }
+        }
         return false;
     }
+
     @Override
-    public int indexOf(Object str) {
+    public int indexOf(T str) {
         ListNode p = first;
         int i = 0;
         while (p != null) {
             if (str.equals(p.data)) {
-                return  i;
-            }else {
+                return i;
+            } else {
                 i++;
                 p = p.next;
             }
@@ -127,11 +136,11 @@ public class SingleLinkedList implements MyList {
     }
 
     @Override
-    public Object at(int index) {
+    public T at(int index) {
         if (index < 0 || index >= size) {
             return null;
         }
-        ListNode p = first;
+        ListNode<T> p = first;
         int i = 0;
         while (p != null) {
             if (i == index) {
@@ -140,6 +149,16 @@ public class SingleLinkedList implements MyList {
             p = p.next;
             i++;
         }
+        return null;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public T next() {
         return null;
     }
 }

@@ -1,13 +1,12 @@
 package 数据结构.lanqiao;
 
-import java.util.Arrays;
 
 /**
  * @author 武凯焱
  * @date 2019/7/23 16:47
  * @Description:
  */
-public class MyArrayList implements MyList {
+public class MyArrayList<T> implements MyList<T> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("[");
@@ -18,7 +17,7 @@ public class MyArrayList implements MyList {
         return stringBuilder.toString();
     }
 
-    private Object[] elements;
+    private T[] elements;
     private int capacity = 10;
     //元素个数
     private int size = 0;
@@ -27,14 +26,14 @@ public class MyArrayList implements MyList {
         this.capacity = capacity;
     }
     public MyArrayList() {
-        this.elements = new Object[capacity];
+        this.elements = (T[]) new Object[capacity];
     }
 
     @Override
-    public void add(Object element) {
+    public void add(T element) {
         if (size==capacity){
             capacity = capacity*2;
-            Object[] arrs = new Object[capacity];
+            T[] arrs = (T[]) new Object[capacity];
             for (int i = 0; i <size ; i++) {
                 arrs[i] = elements[i];
             }
@@ -45,7 +44,7 @@ public class MyArrayList implements MyList {
     }
 
     @Override
-    public void delete(Object element) {
+    public void delete(T element) {
 
     }
 
@@ -60,17 +59,17 @@ public class MyArrayList implements MyList {
     }
 
     @Override
-    public void update(int index, Object newElement) {
+    public void update(int index, T newElement) {
         elements[index] = newElement;
     }
 
     @Override
-    public boolean contains(Object target) {
+    public boolean contains(T target) {
         return indexOf(target)>=0;
     }
 
     @Override
-    public int indexOf(Object str) {
+    public int indexOf(T str) {
         for (int i = 0; i <size ; i++) {
             if (elements[i].equals(str)){
                 return i;
@@ -80,8 +79,18 @@ public class MyArrayList implements MyList {
     }
 
     @Override
-    public Object at(int index) {
-        return null;
+    public T at(int index) {
+        return elements[index];
+
     }
 
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public T next() {
+        return null;
+    }
 }
