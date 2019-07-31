@@ -1,6 +1,5 @@
-package 数据结构.lanqiao;
+package 数据结构.lanqiao.list;
 
-import class_03.Util;
 import leetcode.Utils;
 
 /**

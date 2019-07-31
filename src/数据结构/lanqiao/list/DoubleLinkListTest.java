@@ -1,4 +1,4 @@
-package 数据结构.lanqiao;
+package 数据结构.lanqiao.list;
 
 import org.junit.Test;
 
