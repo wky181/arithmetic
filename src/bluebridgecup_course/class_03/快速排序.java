@@ -12,7 +12,6 @@ public class 快速排序 {
         for (int i = 0; i < arr.length ; i++) {
             System.out.print(arr[i]+" ");
         }
-        Integer[] ar = new Integer[10];
     }
 
     public static void quickSort(int[] arr,int p,int r){
@@ -96,7 +95,6 @@ public class 快速排序 {
     }
     public static void afterQuick(int[] arr,int i,int j){
         if (i<j) {
-
             int q = sort(arr, i, j);
             afterQuick(arr, q + 1, j);
             afterQuick(arr, i, q - 1);
