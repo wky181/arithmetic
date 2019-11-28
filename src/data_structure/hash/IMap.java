@@ -32,14 +32,14 @@ public interface IMap<K,V>  {
      * @param key
      * @return
      */
-    boolean containsKey(Object key);
+    boolean containsKey(K key);
 
     /**
      * 是否包含指定value的键值对
      * @param value
      * @return
      */
-    boolean containsValue(Object value);
+    boolean containsValue(V value);
 
     void put(K k,V v);
 
@@ -66,14 +66,14 @@ public interface IMap<K,V>  {
      * @param key
      * @return
      */
-    V get(Object key);
+    V get(K key);
 
     /**
      * 根据key移除
      * @param key
      * @return
      */
-    V remove(Object key);
+    V remove(K key);
 
 
 
