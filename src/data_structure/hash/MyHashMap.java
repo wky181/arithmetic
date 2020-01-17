@@ -1,5 +1,7 @@
 package data_structure.hash;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -8,8 +10,9 @@ import java.util.Map;
  * @Description:
  */
 public class MyHashMap<K, V> implements IMap<K, V> {
-    private Node[] barrel = new Node[16];
     private int size;
+    private int capacity = 16;
+    private Node[] barrel = new Node[capacity];
 
     @Override
     public void clear() {
@@ -17,6 +20,13 @@ public class MyHashMap<K, V> implements IMap<K, V> {
             node = null;
             size--;
         }
+    }
+
+    public MyHashMap(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public MyHashMap() {
     }
 
     @Override
@@ -89,19 +99,19 @@ public class MyHashMap<K, V> implements IMap<K, V> {
     }
 
     private int hash(K key) {
-        if (key == null){
-            return  (new String("null").hashCode())%16;
+        if (key == null) {
+            return (new String("null").hashCode()) % capacity;
         }
-            //取余法
-            //return key.hashCode() % 16;
-            int h = 0;
+        //取余法
+        //return key.hashCode() % capacity;
+        int h = 0;
         // 素数
         int seed = 31;
         String s = key.toString();
         for (int i = 0; i != s.length(); i++) {
             h = seed * h + s.charAt(i);
         }
-        return h % 16;
+        return h % capacity;
     }
 
     @Override
@@ -122,8 +132,15 @@ public class MyHashMap<K, V> implements IMap<K, V> {
     }
 
     @Override
-    public K[] keySet() {
-        return null;
+    public MyHashSet<K> keySet() {
+        MyHashSet<K> set = new MyHashSet<>();
+        for (Node node : barrel) {
+            while (node != null) {
+                set.add((K) node.key);
+                node = node.next;
+            }
+        }
+        return set;
     }
 
     @Override
@@ -171,7 +188,31 @@ public class MyHashMap<K, V> implements IMap<K, V> {
         return null;
     }
 
-    private class Node<K, V> {
+    @Override
+    public Iterator iterator() {
+        return new MapIterator();
+    }
+
+    private class MapIterator implements Iterator<Node> {
+        int i = 0;
+        Node p = barrel[i];
+        @Override
+        public boolean hasNext() {
+            while (i < capacity-1 && p == null){
+                p = barrel[++i];
+            }
+                return p != null;
+        }
+
+        @Override
+        public Node next() {
+            Node res = p ;
+            p = p.next;
+            return res;
+        }
+    }
+
+    public class Node<K, V> {
         Node next;
         K key;
         V value;

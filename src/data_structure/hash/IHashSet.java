@@ -1,6 +1,7 @@
 package data_structure.hash;
 
-import java.util.HashSet;
+
+import java.util.Iterator;
 
 public interface IHashSet<E> {
     int size();
@@ -9,9 +10,11 @@ public interface IHashSet<E> {
 
     boolean contains(Object o);
 
-    boolean add(E e);
+    void add(E e);
 
-    boolean remove(Object o);
+    void remove(Object o);
 
     void  clear();
+
+    Iterator<E> iteraor();
 }

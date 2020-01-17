@@ -1,5 +1,6 @@
 package data_structure.hash;
 
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -53,7 +54,7 @@ public interface IMap<K,V>  {
      *
      * @return 返回当前map所有key
      */
-    K[] keySet();
+    MyHashSet<K> keySet();
 
     /**
      *
@@ -74,6 +75,8 @@ public interface IMap<K,V>  {
      * @return
      */
     V remove(K key);
+
+    Iterator<MyHashMap.Node> iterator();
 
 
 
