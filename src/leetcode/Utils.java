@@ -30,4 +30,24 @@ public class Utils {
         }
         System.out.println( str.substring(0,str.length()-1));
     }
+    public static ListNode creatListNode(int[] nums) {
+        if (nums == null || nums.length == 0){
+            return null;
+        }
+        ListNode head = new ListNode(nums[0]);
+        ListNode tail = head;
+        for (int i = 1; i < nums.length ; i++) {
+            ListNode listNode =  new ListNode(nums[i]);
+            tail.next = listNode;
+            tail = listNode;
+        }
+        return head;
+    }
+    public static void printListNode(ListNode head){
+        while (head!=null){
+            System.out.print(head.val + "-> ");
+            head = head.next;
+        }
+        System.out.println("null");
+    }
 }

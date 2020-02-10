@@ -56,5 +56,22 @@ public class Leetcode_3 {
         return res;
     }
 
-
+    /**
+     * 再次优化
+     * @param str
+     * @return
+     */
+    public static int slidingWindow1(String str) {
+        HashSet<Character> hashSet = new HashSet<Character>();
+        int left = 0, right = 0, res = 0;
+        while (left < str.length() && right < str.length()){
+            if (!hashSet.contains(str.charAt(right))){
+                hashSet.add(str.charAt(right++));
+                res = Math.max(res,right - left);
+            }else {
+                hashSet.remove(str.charAt(left));
+            }
+        }
+        return res;
+    }
 }
