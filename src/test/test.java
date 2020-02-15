@@ -6,4 +6,8 @@ package test;
  * @Description:
  */
 public interface test {
+  int buy = 0;
+   public static void fin(){
+       System.out.println("desef");
+   }
 }

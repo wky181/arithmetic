@@ -1,9 +1,12 @@
 package bluebridgecup_course.class_03;
 
+import leetcode.ListNode;
+
 import java.util.Arrays;
 import java.util.Random;
 
 public class Util {
+
 
     /**
      * 获取指定范围指定个数的随机数组成的数组
