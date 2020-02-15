@@ -16,17 +16,18 @@ public class LeetCode_328 {
         if (head == null){
             return head;
         }
-        ListNode odd = head;
-        ListNode evenHead = head.next;
+        ListNode oddLast = head;
         ListNode even = head.next;
-        while (even!= null && even.next != null){
-            odd.next = even.next;
-            odd = odd.next;
-            even.next = odd.next;
-            even = even.next;
+        ListNode evenLast = head.next;
+        while (evenLast != null && evenLast.next!=null  ){
+              oddLast.next = evenLast.next;
+              oddLast = oddLast.next;
+              evenLast.next = oddLast.next;
+              evenLast = evenLast.next;
         }
-        odd.next = evenHead;
+        oddLast.next = even;
         return head;
+
     }
 
 }
