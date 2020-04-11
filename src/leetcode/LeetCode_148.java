@@ -42,4 +42,14 @@ public class LeetCode_148 {
         node = node.next;
         return node;
     }
+
+    /**
+     * 迭代法
+     * @param head
+     * @return
+     */
+    public ListNode sortList1(ListNode head) {
+        return null;
+    }
+
 }

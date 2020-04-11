@@ -7,7 +7,7 @@ package bluebridgecup_course.class_03;
  */
 public class 堆排序 {
     public static void main(String[] args) {
-        int[] arr  = {96, 94, 87, 83, 70, 77, 77, 70, 50, 19, 12, 57, 19, 19, 34, 18, 42, 35, 7, 36};
+        int[] arr  =  Util.getRandomArr(10,1,60);
         sort1(arr);
         Util.print(arr);
     }
@@ -59,7 +59,7 @@ public class 堆排序 {
     }
     //使乱序数组变为大顶堆
     static void maxHeap(int[] arr){
-        int n = arr.length/2;
+        int n = arr.length/2 -1;
         for (int i = n; i >=0 ; i--) {
             maxHeapFixDown(arr,i,arr.length);
         }
@@ -121,9 +121,8 @@ public class 堆排序 {
             if (arr[i]>=arr[min]){
                 Util.swap(arr,i,min);
                 minHeapDown(arr,min,n);
-            }else {
-                return;
             }
+
       /*  int left = 2*i+1;
         int right = 2*i+2;
         int min = left;

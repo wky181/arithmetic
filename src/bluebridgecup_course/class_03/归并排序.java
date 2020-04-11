@@ -8,7 +8,7 @@ package bluebridgecup_course.class_03;
 public class 归并排序 {
     static int nixu = 0;
     public static void main(String[] args) {
-        int arr[] = Util.getRandomArr(5,1,20);
+        int arr[] = Util.getRandomArr(10, 1, 60);
         Util.print(arr);
         sort(arr,0,arr.length-1);
         System.out.println(nixu);
@@ -73,8 +73,8 @@ public class 归并排序 {
     public static void sort(int[] arr,int begin ,int end){
         if (begin<end){
             int mid = (begin+end)/2;
-            mergerSort(arr,begin,mid);
-            mergerSort(arr,mid+1,end);
+            sort(arr,begin,mid);
+            sort(arr,mid+1,end);
             merger(arr,begin,mid,end);
         }
     }

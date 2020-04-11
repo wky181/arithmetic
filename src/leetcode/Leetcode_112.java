@@ -13,9 +13,13 @@ public class Leetcode_112 {
         TreeNode treeNode = new TreeNode(0);
     }
     public static boolean hasPathSum(TreeNode root, int sum) {
-
-        method(root, 0,sum);
-        return mark;
+        if(root == null){
+            return false;
+        }
+        if (root.left == null && root.right == null && root.val == sum){
+            return true;
+        }
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
 
     public static void method(TreeNode treeNode, int sum, int target) {
