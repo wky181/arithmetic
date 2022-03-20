@@ -5,7 +5,7 @@ package leetcode;
  * @Date: 2020/2/16 11:51
  * @Description:
  */
-public class LeetCode_19 {
+public class  LeetCode_19 {
     public static void main(String[] args) {
        /* int[] nums = {1};
         ListNode node = Utils.creatListNode(nums);

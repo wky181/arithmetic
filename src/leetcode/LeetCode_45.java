@@ -1,6 +1,8 @@
 package leetcode;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 
 /**
  * @Author: wky233
@@ -9,8 +11,8 @@ import java.util.Arrays;
  */
 public class LeetCode_45 {
     public static void main(String[] args) {
-        int[] nums = {1,2,3};
-        int jump = new LeetCode_45().jump(nums);
+        int[] nums = {1,2,1,1,1};
+        int jump = new LeetCode_45().jump2(nums);
         System.out.println(jump);
     }
     int[] dp ;
@@ -49,6 +51,60 @@ public class LeetCode_45 {
             //起跳点和结束点相同，开始起跳,调到最远的长度。
             if (i == end){
                 end = fastpath;
+                jump++;
+            }
+        }
+        return jump;
+    }
+    //使用BFS来做
+    public int jump2(int[] nums) {
+        if (nums.length <= 1){
+            return 0;
+        }
+        Deque<Node> deque = new ArrayDeque<>();
+        deque.offer(new Node(0,nums[0],0));
+        boolean[] visited = new boolean[nums.length];
+        while (!deque.isEmpty()){
+            int size = deque.size();
+            for (int i = 0; i < size ; i++) {
+                Node node = deque.poll();
+                int newIndex = node.index;
+                visited[newIndex] = true;
+                if (newIndex >= nums.length-1){
+                    return node.step + 1;
+                }
+                for (int j = node.count; j >= 1  ; j--) {
+                    if (newIndex + j >= nums.length-1){
+                        return node.step + 1;
+                    }
+                    if (!visited[newIndex + j]) {
+                        deque.offer(new Node(newIndex + j, nums[newIndex + j], node.step + 1));
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+    class Node{
+        int index;
+        int count;
+        int step;
+
+        public Node(int index, int count,int step) {
+            this.index = index;
+            this.count = count;
+            this.step = step;
+        }
+    }
+    //使用贪心算法来解
+    public int jump3(int[] nums) {
+       int end = 0;
+       int maxPath  = 0;
+       int jump = 0;
+        for (int i = 0; i < nums.length-1 ; i++) {
+            maxPath = Math.max(maxPath, i +  nums[i]);
+            if (i == end){
+                end = maxPath;
                 jump++;
             }
         }

@@ -25,6 +25,7 @@ public class LeetCode_105 {
         return build(0,preorder.length-1);
 
     }
+    // 返回这段先序遍历序列重建后的根节点
     public TreeNode build(int left, int right) {
         if (left > right){
             return null;

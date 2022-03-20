@@ -6,11 +6,18 @@ package leetcode;
  * @Description:
  */
 public class LeetCode_55 {
+    public static void main(String[] args) {
+        int a = 100;
+        System.out.println(a---1);
+    }
     public boolean canJump(int[] nums) {
-        int maxpath = 0;
-        for (int i = 0; i < nums.length ; i++) {
-            maxpath = Math.max(nums[i] + i,maxpath);
-        }
-        return maxpath >= nums.length;
+            int maxLength = nums[0];
+            for (int i = 0; i < nums.length-1 ; i++) {
+                maxLength = Math.max(nums[i],maxLength-1);
+                if (maxLength == 0){
+                    return false;
+                }
+            }
+            return true ;
     }
 }

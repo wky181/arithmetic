@@ -71,7 +71,7 @@ public class LeetCode_445 {
     }
 
     /**
-     * 利用双栈来做，不用反转链表了
+     * 利用双栈来做
      */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) {
@@ -111,5 +111,42 @@ public class LeetCode_445 {
             tail = temp;
         }
         return tail;
+    }
+    //
+    public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
+        if (l1 == null){
+            return l2;
+        }else if (l2 == null){
+            return l1;
+        }
+        Stack<Integer> stackl1 = new Stack<Integer>();
+        Stack<Integer> stackl2 = new Stack<Integer>();
+        ListNode headL1 = l1;
+        ListNode headL2 = l2;
+        while (headL1!=null){
+            stackl1.push(headL1.val);
+            headL1 = headL1.next;
+        }
+        while (headL2!=null){
+            stackl2.push(headL2.val);
+            headL2 = headL2.next;
+        }
+        ListNode dummy = null;
+        int flag = 0;
+        while (!stackl1.isEmpty() || !stackl2.isEmpty()){
+            int numL1 = stackl1.isEmpty() ? 0 : stackl1.pop();
+            int numL2 = stackl2.isEmpty() ? 0 : stackl2.pop();
+            int sum = numL1 + numL2 + flag;
+            flag = sum >= 10 ? 1 : 0;
+            ListNode node = new ListNode(sum % 10);
+            node.next = dummy;
+            dummy = node;
+        }
+        if (flag == 1){
+            ListNode node = new ListNode(1);
+            node.next = dummy;
+            dummy = node;
+        }
+        return dummy;
     }
 }

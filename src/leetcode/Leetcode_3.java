@@ -9,7 +9,7 @@ import java.util.HashSet;
  */
 public class Leetcode_3 {
     public static void main(String[] args) {
-        System.out.println(slidingWindow("abcabcbb"));
+        System.out.println(slidingWindow2("abcabcbb"));
 
     }
 
@@ -74,4 +74,25 @@ public class Leetcode_3 {
         }
         return res;
     }
+    //滑动窗口 用数组来做
+    public static int slidingWindow2(String str) {
+        int[] windows = new int[128];
+        int maxLength = 0;
+        char[] array = str.toCharArray();
+        int left = 0;
+        int right = 0;
+        while (right < str.length()){
+            char ch = array[right];
+            windows[ch]++;
+            right++;
+            while (windows[ch] > 1 ){
+                 char lf = array[left];
+                 windows[lf]--;
+                 left++;
+            }
+            maxLength = Math.max(maxLength,right-left);
+        }
+        return maxLength;
+    }
+
 }

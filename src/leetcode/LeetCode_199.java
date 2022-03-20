@@ -42,5 +42,19 @@ public class LeetCode_199 {
 
         return res;
     }
+    List<Integer> list = new LinkedList<>();
+    // dfs 先访问父节点，在访问右子节点，在访问左子节点
+    public void slove(TreeNode root,int deepth) {
+        if (root == null){
+            return ;
+        }
+        // 表示是否是访问该层的第一个节点，如果size == 等于当前所在层数，表示是第一次访问
+        if (list.size() == deepth ){
+            list.add(root.val);
+        }
+        deepth++;
+        slove(root.right,deepth);
+        slove(root.left,deepth);
+    }
 
 }

@@ -101,5 +101,47 @@ public class LeetCode_25 {
         return res.next;
     }
 
-
+    /**
+     * 采用迭代法来做
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode reverseKGroup3(ListNode head, int k) {
+        // 把上一个翻转过的子链表的尾指向下一个翻转过的子链表的头
+        ListNode dummy = new ListNode(0);
+        ListNode res = dummy;
+        ListNode tail = head;
+        while (tail != null){
+            //查看是否满足k个
+            int count = 0;
+            for (; count < k && tail != null ; count++) {
+                tail =  tail.next;
+            }
+            //判断是否是K个
+            if (count < k){
+                dummy.next = head;
+            }else {
+                // 此时要翻转的k个是从head 到 tail的前一个 tail是下一组的头
+                ListNode nextHead = tail;
+                // 将上一组尾结点与翻转后的头结点相连接
+                dummy.next = reverse1(head,tail);
+                // 更新尾结点, head为翻转过的尾结点
+                dummy = head;
+                head = nextHead;
+            }
+        }
+        return res.next;
+    }
+    public ListNode reverse1(ListNode head,ListNode tail){
+        ListNode per = null;
+        ListNode cur = head;
+        while (cur != tail){
+            ListNode next = cur.next;
+            cur.next = per;
+            per = cur;
+            cur = next;
+        }
+        return per;
+    }
 }

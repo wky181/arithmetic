@@ -22,6 +22,7 @@ public class HeapSort {
             maxHeapDown(nums, 0, len);
         }
     }
+    // 构建最大堆
     public void maxHeap(int[] nums){
         int last = nums.length / 2 -1;
         for (int i = last; i >= 0 ; i--) {
@@ -45,6 +46,9 @@ public class HeapSort {
         }
     }
     public void swap(int[] nums , int i , int j){
+        if (nums[i] == nums[j]){
+            return;
+        }
         nums[i] = nums[i] ^ nums[j];
         nums[j] = nums[j] ^ nums[i];
         nums[i] = nums[j] ^ nums[i];

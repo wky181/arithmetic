@@ -25,19 +25,25 @@ public class QuickSort {
     }
 
     public int partition(int[] nums, int l, int r) {
-        int p = nums[l];
-        //Mark初始化为起始下标,mark代表左边序列的最右边
-        int mark = l;
-        for (int i = l+1; i <= r ; i++) {
-            if (nums[i] < p){
-                mark++;
-                swap(nums,i,mark);
+        int pivot = nums[l];
+        while (l < r) {
+            /*
+             * 从后往前遍历，找到比pivot小的值
+             */
+            while (l < r && nums[l] >= pivot) {
+                r--;
             }
+            nums[l] = nums[r];
+            /*
+             * 从前往后遍历，找到比pivot大的值；
+             */
+            while (l < r && nums[l] <= pivot) {
+                l++;
+            }
+            nums[r] = nums[l];
         }
-        nums[l] = nums[mark];
-        nums[mark] = p;
-        return mark;
-
+        nums[l] = pivot;
+        return l;
     }
 
     public void swap(int[] nums, int l, int r) {

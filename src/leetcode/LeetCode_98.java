@@ -41,4 +41,28 @@ public class LeetCode_98 {
         }
         return helper(root.left, lower , root.right) && helper(root.right, root , upper);
     }
+
+    /**
+     * 递归函数意义：判断以root为根节点的树是否是二叉搜索树
+     * @param top root 结点的上限节点，要小于上限节点
+     * @param end root 结点的下限节点，要大于下限节点
+     * @param root
+     * @return
+     */
+    public boolean isValid(TreeNode top, TreeNode end,TreeNode root) {
+        if (root == null){
+            return true;
+        }
+        if (top != null && root.val >= top.val){
+            return false;
+        }
+        if (end != null && root.val <= end.val){
+            return false;
+        }
+        // 查看左子树是否是二叉搜索树
+        boolean left = isValid(root,end,root.left);
+        // 查看右子树是否是二叉搜索树
+        boolean right = isValid(top,root,root.right);
+        return left && right;
+    }
 }

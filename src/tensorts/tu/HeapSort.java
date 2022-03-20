@@ -8,8 +8,7 @@ import tensorts.QuickSort;
  * @Date: 2020/3/9 14:25
  * @Description:
  */
-public class HeapSort {
-
+public class    HeapSort {
     public static void main(String[] args) {
         int[] nums = Util.getRandomArr(1000,1,1000);
         Util.print(nums);

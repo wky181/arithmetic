@@ -11,7 +11,18 @@ import java.util.concurrent.locks.ReentrantLock;
  * @Description:
  */
 public class Demo {
+    static final int[] temp = new int[5];
     public static void main(String[] args) throws IOException {
+        temp[1] = 2;
+        temp[1] = 3;
+        System.out.println(temp[1]);
+    //    temp = new int[2];
+        double b = 0;
+        int a = 3;
+        System.out.println(a * 0.5);
+        Integer num1 = 200;
+        Integer num2 = 200;
+        System.out.println(num1 == num2);
        /* System.out.println(99&(13-1));
         System.out.println(10%6);
         System.out.println(7&(4-1));*/
@@ -39,6 +50,13 @@ public class Demo {
         linkedHashMap.put(1,1);
 */
 
+    }
+    public void test(int a, String string){
+        System.out.println("aabb");
+    }
+
+    public void test(String string, int a){
+        System.out.println("bbaa");
     }
 
 

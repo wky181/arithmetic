@@ -17,16 +17,32 @@ public class LeetCode_142 {
       }
       return head;
     }
-    public ListNode isCycle(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
-        while (fast != null && fast.next != null ){
-            fast = fast.next.next;
-            slow = slow.next;
-            if (fast == slow){
-                return fast;
+        public ListNode isCycle(ListNode head) {
+            ListNode fast = head;
+            ListNode slow = head;
+            while (fast != null && fast.next != null ){
+                fast = fast.next.next;
+                slow = slow.next;
+                if (fast == slow){
+                    return fast;
+                }
             }
+            return null;
         }
-        return null;
-    }
+
+        public ListNode detectCycle1(ListNode head) {
+            if (head == null){
+                return null;
+            }
+            ListNode res = isCycle(head);
+            if (res == null){
+                return null;
+            }
+            ListNode start = head;
+            while (start != res ){
+                res = res.next;
+                start = start.next;
+            }
+            return start;
+        }
 }

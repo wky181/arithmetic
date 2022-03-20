@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 /**
@@ -9,7 +11,8 @@ import java.util.Stack;
  */
 public class LeetCode_42 {
     public static void main(String[] args) {
-
+        int[] heights = {0,1,0,2,1,0,1,3,2,1,2,1};
+        System.out.println(trap1(heights));
     }
 
     public int trap(int[] height) {
@@ -33,6 +36,30 @@ public class LeetCode_42 {
                 }
             }
             stack.add(i);
+        }
+        return ans;
+    }
+    public static  int trap1(int[] height) {
+        int len = height.length;
+        Deque<Integer> stack = new ArrayDeque();
+        int ans = 0;
+        for (int i = 0; i < len  ; i++) {
+            // 找出以栈顶元素为最低点所形成的坑
+            while (!stack.isEmpty() && height[stack.peekLast()] < height[i]){
+                int curIndex = stack.pollLast();
+                int topHeight = height[curIndex];
+                while (!stack.isEmpty() && topHeight == height[stack.peekLast()]){
+                    stack.pollLast();
+                }
+                if (!stack.isEmpty()) {
+                    int curWedith = i - stack.peekLast() - 1;
+                 //   System.out.println(stack.peekLast() + " " + topHeight);
+                    int curheight = Math.min(height[i], height[stack.peekLast()]) - topHeight;
+                 //   System.out.println(curheight + "*" + curWedith + "=" + curheight * curWedith + " i = " + i);
+                    ans +=  curheight * curWedith;
+                }
+            }
+            stack.addLast(i);
         }
         return ans;
     }

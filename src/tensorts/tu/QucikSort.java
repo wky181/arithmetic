@@ -24,14 +24,14 @@ public class QucikSort {
     public int partition(int[] nums,int l , int r){
         //代表左边序列的最右边下标
         int mark = l;
-        int pavoit = nums[l];
+        int povit = nums[l];
         for (int i = l+1; i <= r ; i++) {
-            if (nums[i] < pavoit){
+            if (nums[i] < povit){
                 mark++;
-                swap(nums,mark,i);
+                swap(nums, mark , i);
             }
         }
-        swap(nums,mark,l);
+        swap(nums,mark, l);
         return mark;
     }
     public void swap(int[] nums , int i, int j){

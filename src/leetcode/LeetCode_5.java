@@ -7,7 +7,8 @@ package leetcode;
  */
 public class LeetCode_5 {
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("babadaddddab"));
+
+        System.out.println(new LeetCode_5().longestPalindrome5("bb"));
     }
 
     public static String longestPalindrome(String s) {
@@ -69,4 +70,63 @@ public class LeetCode_5 {
         }
         return ans;
     }
+    // 中心扩散法
+    public String longestPalindrome4(String s) {
+        if (s.length() < 2){
+            return s;
+        }
+        String res = s.substring(0,1);
+        for (int i = 0; i < s.length()-1; i++) {
+            // 奇数长度的中心扩散
+            String s1 = getStr(s, i, i);
+            //偶数长度的中心扩散
+            String s2 = getStr(s, i, i+1);
+            String str = s2.length() > s1.length() ? s2 : s1;
+            if (str.length() > res.length()){
+                res  = str;
+            }
+        }
+        return res;
+    }
+    public String getStr (String s ,int left, int right){
+        char[] arrays = s.toCharArray();
+        while (right < arrays.length &&  left >=0){
+            if (arrays[left] == arrays[right]){
+                right++;
+                left--;
+            }else {
+                break;
+            }
+        }
+        return s.substring(left+1,right);
+    }
+    // 动态规划写法
+    public String longestPalindrome5(String s) {
+       if(s.length() < 2){
+           return s;
+       }
+       int maxLen = 1;
+       int bgein = 0;
+       boolean[][] dp = new boolean[s.length()][s.length()];
+        char[] array = s.toCharArray();
+        for (int i = 1; i < array.length ; i++) {
+            for (int j = i-1; j > 0 ; j--) {
+                if (array[i] == array[j]){
+                    if (i - j  <= 2){
+                        dp[j][i] = true;
+                    }else {
+                        dp[j][i] = dp[j+1][i-1];
+                    }
+                }else {
+                    dp[j][i] = false;
+                }
+                if (dp[j][i] && i-j + 1 > maxLen){
+                    maxLen = i-j + 1;
+                    bgein = j;
+                }
+            }
+        }
+        return s.substring(bgein,bgein+maxLen);
+    }
+
 }
